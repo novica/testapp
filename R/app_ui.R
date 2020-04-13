@@ -3,74 +3,37 @@
 #' @param request Internal parameter for `{shiny}`. 
 #'     DO NOT REMOVE.
 #' @import shiny
-#' @import shinydashboard
 #' @noRd
 app_ui <- function(request) {
   tagList(
     # Leave this function for adding external resources
     golem_add_external_resources(),
     # List the first level UI elements here 
-  dashboardPage(    
-    dashboardHeader(title = "test app"),
-    dashboardSidebar(
-      sidebarMenu(id = "sidebar",
-        menuItem("Dataset 1", tabName = "dataset1", icon = icon("chart-bar")),
-        menuItem("Dataset 2", tabName = "dataset2", icon = icon("chart-area"))
-      )
-    ),
+    fluidPage(
       
-    dashboardBody(
-      tabItems(
-        tabItem(tabName = "dataset1",
-                h2("Dataset Random Lab Values Info 2020"),
-                fluidRow(
-                  box(plotOutput("plot1")),
-                  
-                  box(
-                    "Box content here", br(), "More box content",
-                    sliderInput("slider", "Slider input:", 1, 100, 50),
-                    textInput("text", "Text input:")
-                  )
-                ),
-                fluidRow(
-                  box(plotOutput("plot2")),
-                  
-                  box(
-                    "Box content here", br(), "More box content",
-                    sliderInput("slider", "Slider input:", 1, 100, 50),
-                    textInput("text", "Text input:")
-                  )
-                )
+      # Application title
+      titlePanel("Test app for interview"),
+      
+      # Sidebar with a slider input for number of bins 
+      sidebarLayout(
+        sidebarPanel(
+          selectInput(inputId =  "dataset", label =  "Select Dataset:",
+                      c("Lab Values" = "dataset1",
+                        "Patient Info" = "dataset2"),
+                      selected = FALSE,
+                      multiple = FALSE,
+                      selectize = FALSE, size = 2 ), 
+          uiOutput("makePlot")
         ),
         
-        tabItem(tabName = "dataset2",
-                h2("Dataset Patient Level Info 2020"),
-                fluidRow(
-                  box(plotOutput("plot3")),
-                  
-                  box(
-                    "Box content here", br(), "More box content",
-                    sliderInput("slider", "Slider input:", 1, 100, 50),
-                    textInput("text", "Text input:")
-                  )
-                ),
-                fluidRow(
-                  box(plotOutput("plot4")),
-                  
-                  box(
-                    "Box content here", br(), "More box content",
-                    sliderInput("slider", "Slider input:", 1, 100, 50),
-                    textInput("text", "Text input:")
-                  )
-                )
+        # Show a plot of the generated distribution
+        mainPanel(
+          tableOutput("headTable"),
         )
       )
     )
   )
- )
 }
-
-
 
 #' Add external Resources to the Application
 #' 
