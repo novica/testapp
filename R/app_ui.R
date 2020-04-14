@@ -23,12 +23,13 @@ app_ui <- function(request) {
                       selected = FALSE,
                       multiple = FALSE,
                       selectize = FALSE, size = 2 ), 
-          uiOutput("makePlot")
+          uiOutput(outputId = "makePlot")
         ),
         
         # Show a plot of the generated distribution
         mainPanel(
-          tableOutput("headTable"),
+          tableOutput(outputId = "headTable"),
+          plotOutput(outputId = "plot")
         )
       )
     )

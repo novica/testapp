@@ -44,11 +44,35 @@ app_server <- function( input, output, session ) {
     
     return(x)
   })
+ 
   
+  
+  buttonstates <- reactiveValues(one = 0)
+  
+  #' @import ggplot2
+  whattoplot <- reactive({
+    req(input$makePlot1, input$makePlot2)
+    if (input$makePlot1 != buttonstates$one) {
+      ggplot(ds_head) +
+        aes(x = input$chooseVar1, fill = input$chooseFill1, color = input$chooseFill1) +
+        geom_histogram(position = "dodge", bins = 15)
+      } else { 
+        ggplot(ds_head) +
+          aes(x = input$chooseVar2, fill = input$chooseFill2, color = input$chooseFill2) +
+          geom_histogram(position = "dodge", bins = 15)
+      }
+    
+    return(x)
+  })
+  
+
+
   output$headTable <- renderTable({ ds_head() })
   
   output$makePlot <- renderUI({ choose_vars() })
     
-  
+  output$plot <- renderPlot({
+    req(whattoplot())
+  })
   
 }
