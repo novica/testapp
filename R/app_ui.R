@@ -23,7 +23,11 @@ app_ui <- function(request) {
                       selected = FALSE,
                       multiple = FALSE,
                       selectize = FALSE, size = 2 ), 
-          uiOutput(outputId = "makePlot")
+          #uiOutput(outputId = "makePlot")
+          mod_select_module_ui("select_module_ui_1"),
+          mod_select_module_ui("select_module_ui_2"),
+          mod_select_module_ui("select_module_ui_3"),
+          mod_select_module_ui("select_module_ui_4")
         ),
         
         # Show a plot of the generated distribution
