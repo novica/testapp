@@ -17,8 +17,7 @@ mod_select_module_ui <- function(id){
 #' select_module Server Function
 #'
 #' @noRd 
-mod_select_module_server <- function(input,output, session,
-                                       choices) {
+mod_select_module_server <- function(input, output, session, choices) {
   
   ns <- session$ns
   
@@ -35,9 +34,9 @@ mod_select_module_server <- function(input,output, session,
   })
   
   
-  output$dropdowns <- renderUI({
+  output$chooseVar <- renderUI({
     tagList(
-      column(4, wellPanel(h4("Filter variables"), drop_widgets() )),
+      wellPanel(h4("Filter variables"), drop_widgets() ),
     )
   })
   
@@ -50,38 +49,10 @@ mod_select_module_server <- function(input,output, session,
   
 }
     
+
+
 ## To be copied in the UI
 # mod_select_module_ui("select_module_ui_1")
     
 ## To be copied in the server
 # callModule(mod_select_module_server, "select_module_ui_1")
-#' select_module UI Function
-#'
-#' @description A shiny Module.
-#'
-#' @param id,input,output,session Internal parameters for {shiny}.
-#'
-#' @noRd 
-#'
-#' @importFrom shiny NS tagList 
-mod_select_module_ui <- function(id){
-  ns <- NS(id)
-  tagList(
- 
-  )
-}
-    
-#' select_module Server Function
-#'
-#' @noRd 
-mod_select_module_server <- function(input, output, session){
-  ns <- session$ns
- 
-}
-    
-## To be copied in the UI
-# mod_select_module_ui("select_module_ui_1")
-    
-## To be copied in the server
-# callModule(mod_select_module_server, "select_module_ui_1")
- 

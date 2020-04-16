@@ -13,7 +13,6 @@ Imports:
     DT,
     glue,
     htmltools,
-    shinydashboard,
     ggplot2
 Encoding: UTF-8
 LazyData: true

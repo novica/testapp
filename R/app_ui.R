@@ -19,13 +19,13 @@ app_ui <- function(request) {
         sidebarPanel(
           selectInput(inputId =  "vars", label =  "Select Dataset:",
                       choices =  c("Lab Values" = "dataset1",
-                        "Patient Info" = "dataset2"),
-                      selected = FALSE,
-                      multiple = FALSE,
-                      selectize = FALSE, size = 2 ), 
+                        "Patient Info" = "dataset2")),
+                      #selected = FALSE,
+                      #multiple = FALSE,
+                      #selectize = FALSE, size = 2 ), 
           
           # call the module ui
-          mod_select_module_ui("modvars"),
+          mod_select_module_ui("select_module_ui_1"),
           
           # render what the module processed 
           textOutput("from_module")

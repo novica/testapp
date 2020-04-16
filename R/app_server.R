@@ -54,8 +54,7 @@ app_server <- function( input, output, session ) {
   
   
   # call module
-  from_module <- callModule(module = mod_select_module_server,
-                            id = "modvars",
+  from_module <- callModule(mod_select_module_server, "select_module_ui_1",
                             choices = dropdown_choices)
   
   # show what the module processed to the screen
