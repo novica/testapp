@@ -31,7 +31,7 @@ app_ui <- function(request) {
         # Show a plot of the generated distribution
         mainPanel(
           # render what the module processed 
-          textOutput("from_module"),
+          #textOutput("from_module"),
           
           plotOutput(outputId = "plot")
         )

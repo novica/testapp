@@ -2,6 +2,7 @@
 
 export(make_dropdown)
 export(run_app)
+import(ggplot2)
 import(shiny)
 importFrom(config,get)
 importFrom(golem,activate_js)

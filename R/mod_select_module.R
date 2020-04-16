@@ -21,7 +21,7 @@ mod_select_module_server <- function(input, output, session, choices) {
   
   ns <- session$ns
   
-  vars_for_plot <- c("x_var", "group_var", "fill_var")
+  vars_for_plot <- c("x_var", "fill_var", "color_var")
   
   
   drop_widgets <- reactive({
