@@ -20,21 +20,19 @@ app_ui <- function(request) {
           selectInput(inputId =  "vars", label =  "Select Dataset:",
                       choices =  c("Lab Values" = "dataset1",
                         "Patient Info" = "dataset2")),
-                      #selected = FALSE,
-                      #multiple = FALSE,
-                      #selectize = FALSE, size = 2 ), 
           
           # call the module ui
           mod_select_module_ui("select_module_ui_1"),
           
-          # render what the module processed 
-          textOutput("from_module")
-        
+          actionButton(inputId = 'plotButton', label = "Plot")
+          
         ),
         
         # Show a plot of the generated distribution
         mainPanel(
-          #tableOutput(outputId = "headTable"),
+          # render what the module processed 
+          textOutput("from_module"),
+          
           plotOutput(outputId = "plot")
         )
       )

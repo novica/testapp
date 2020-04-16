@@ -25,11 +25,11 @@ mod_select_module_server <- function(input, output, session, choices) {
   
   
   drop_widgets <- reactive({
-    lapply(vars_for_plot, function(x)
+    lapply(seq_along(vars_for_plot), function(i)
       make_dropdown(
-        drop_id = ns(x),
-        drop_label = x,
-        drop_choices = choices()
+        drop_id = ns(vars_for_plot[[i]]),
+        drop_label = vars_for_plot[[i]],
+        drop_choices = choices()[[i]]
       ))
   })
   
