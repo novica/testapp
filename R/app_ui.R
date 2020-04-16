@@ -17,22 +17,24 @@ app_ui <- function(request) {
       # Sidebar with a slider input for number of bins 
       sidebarLayout(
         sidebarPanel(
-          selectInput(inputId =  "dataset", label =  "Select Dataset:",
-                      c("Lab Values" = "dataset1",
+          selectInput(inputId =  "vars", label =  "Select Dataset:",
+                      choices =  c("Lab Values" = "dataset1",
                         "Patient Info" = "dataset2"),
                       selected = FALSE,
                       multiple = FALSE,
                       selectize = FALSE, size = 2 ), 
-          #uiOutput(outputId = "makePlot")
-          mod_select_module_ui("select_module_ui_1"),
-          mod_select_module_ui("select_module_ui_2"),
-          mod_select_module_ui("select_module_ui_3"),
-          mod_select_module_ui("select_module_ui_4")
+          
+          # call the module ui
+          mod_select_module_ui("modvars"),
+          
+          # render what the module processed 
+          textOutput("from_module")
+        
         ),
         
         # Show a plot of the generated distribution
         mainPanel(
-          tableOutput(outputId = "headTable"),
+          #tableOutput(outputId = "headTable"),
           plotOutput(outputId = "plot")
         )
       )
