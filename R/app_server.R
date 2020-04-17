@@ -9,17 +9,17 @@ app_server <- function( input, output, session ) {
   
   dropdown_choices <- reactive({
     if (input$vars == "dataset1") {
-      x <- colnames(dataset1)[c(3,8)]
-      f <- colnames(dataset1)[c(5,10)]
-      c <- f # probably redundant, but for clarity
-      var_list <- list("x_var" = x, "fill_var" = f, "color_var" = c)
+      x <- colnames(dataset1)[3]
+      y <- colnames(dataset1)[8]
+      c <- y # probably redundant, but for clarity
+      var_list <- list("first_var" = x, "second_var" = y, "third_var" = c)
     }
     
     if (input$vars == "dataset2") {
       x <- colnames(dataset2)[3]
       f <- colnames(dataset2)[c(4,5)]
       c <- f # probably redundant, but for clarity
-      var_list <- list("x_var" = x, "fill_var" = f, "color_var" = c)
+      var_list <- list("first_var" = x, "first_var" = f, "third_var" = c)
     }
     return(var_list)
   })
@@ -27,17 +27,17 @@ app_server <- function( input, output, session ) {
   #' @import ggplot2
   what_to_plot <- eventReactive(input$plotButton, {
     
-    x_var <- rlang::sym(from_module()[[1]])
-    g_var <- rlang::sym(from_module()[[2]])
-    f_var <- rlang::sym(from_module()[[3]])
+    first_var <- rlang::sym(from_module()[[1]])
+    second_var <- rlang::sym(from_module()[[2]])
+    third_var <- rlang::sym(from_module()[[3]])
     
     
     if (input$vars == "dataset1") {
     plt <- ggplot(dataset1) +
-      aes( x = !!x_var, fill = !!g_var, color = !!f_var) +
-      geom_histogram(position = "dodge", bins = 15)
+      aes( x = !!first_var, y = !!second_var, color = !!third_var ) +
+      geom_point()
     } else plt <- ggplot(dataset2) +
-      aes( x = !!x_var, fill = !!g_var, color = !!f_var) +
+      aes( x = !!first_var, fill = !!second_var, color = !!third_var) +
       geom_histogram(position = "dodge", bins = 15)
     
     return(plt)
