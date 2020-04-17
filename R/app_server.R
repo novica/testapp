@@ -41,10 +41,7 @@ app_server <- function( input, output, session ) {
       geom_point()
     } else plt <- ggplot(dataset2) +
       aes( x = !!first_var, fill = !!second_var, color = !!third_var) +
-      geom_histogram(position = "dodge", bins = 15) +
-      facet_grid(rows = third_var) +
-      theme(legend.position = "none")
-      
+      geom_histogram(position = "dodge", bins = 15)
     
     return(plt)
   })
